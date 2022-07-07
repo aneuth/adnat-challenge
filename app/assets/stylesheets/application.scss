@@ -10,3 +10,21 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+body {
+  color: $white;
+  background-color: $dark-gray;
+  // position: relative;
+  // margin-bottom: 50px;
+}
+
+.nav-link.active {
+  background-color: $purple !important;
+  color: $white !important;
+  font-weight: bold !important;
+}
+
+.nav-link {
+  color: $purple !important;
+  font-weight: bold !important;
+}
