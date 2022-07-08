@@ -1,29 +1,34 @@
 <div class = "home-container">
 
-  <% if current_user.organisation %>
+  <div data-controller="join-organisation">
 
-    <div>
-      <h5><%= current_user.organisation.name %>
-      <%# <%= link_to "View shifts",  %>
-      <%# <%= link_to "Edite",  %>
-      <%# <%= link_to "Leave",  %>
-    </div>
+    <% if current_user.organisation %>
+      <div data-join-organisation-target = "belongs">
 
-  <% else %>
+          <h5><%= current_user.organisation.name %>
+          <%# <%= link_to "View shifts",  %>
+          <%# <%= link_to "Edite",  %>
+          <%# <%= link_to "Leave",  %>
+      </div>
 
-    <h3>Logged in as <%= current_user.name %> </h3>
+    <% else %>
+      <div data-join-organisation-target = "does-not-belong">
+        <h3>Logged in as <%= current_user.name %> </h3>
 
-    <h5> You aren't a member of any organisations </h5>
-    <h5> Join an existing one or create a new one </h5>
+        <h5> You aren't a member of any organisations </h5>
+        <h5> Join an existing one or create a new one </h5>
 
-    <h1 class="mt-5 mb-4">Organisations</h1>
+        <h1 class="mt-5 mb-4">Organisations</h1>
 
-    <div>
-      <% @organisations.each do |organisation| %>
-        <h5><%= organisation.name %><%= link_to "edit", edit_organisation_path(organisation) %></h5>
-      <% end %>
-    </div>
+        <div>
+          <% @organisations.each do |organisation| %>
+            <h5><%= organisation.name %> <%= link_to "edit", edit_organisation_path(organisation) %>,  <%= link_to "join", edit_organisation_path(organisation), data: {action: "click->join-organisation#join"} %> </h5>
+          <% end %>
+        </div>
+      </div>
 
-  <% end %>
+    <% end %>
+
+  </div>
 
 </div>
