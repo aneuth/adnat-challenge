@@ -1,10 +1,29 @@
-<h3>Logged in as <%= current_user.name %> </h3>
+<div class = "home-container">
 
-<h5> You aren't a member of any organisations </h5>
-<h5> Join an existing one or create a new one </h5>
+  <% if current_user.organisation %>
 
-<h1 class="mt-5">Organisations</h1>
+    <div>
+      <h5><%= current_user.organisation.name %>
+      <%# <%= link_to "View shifts",  %>
+      <%# <%= link_to "Edite",  %>
+      <%# <%= link_to "Leave",  %>
+    </div>
 
-<% organisations.each do |organisation| %>
-  <%= organisation.name %>
-<% end %>
+  <% else %>
+
+    <h3>Logged in as <%= current_user.name %> </h3>
+
+    <h5> You aren't a member of any organisations </h5>
+    <h5> Join an existing one or create a new one </h5>
+
+    <h1 class="mt-5 mb-4">Organisations</h1>
+
+    <div>
+      <% @organisations.each do |organisation| %>
+        <h5><%= organisation.name %><%= link_to "edit", edit_organisation_path(organisation) %></h5>
+      <% end %>
+    </div>
+
+  <% end %>
+
+</div>
