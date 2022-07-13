@@ -1,5 +1,11 @@
 class OrganisationsController < ApplicationController
 
+  def create
+    @organisation = Organisation.new(params[:id])
+    current_user.organisation = @organisation
+    @organisation.save
+  end
+
   def update
     @organisation = Organisation.find(params[:id])
     @organisation.update(organisation_params)

@@ -11,9 +11,15 @@ export default class extends Controller {
 
   join(event) {
     console.log(event.target)
-      this.belongsTarget.classList.remove("d-none")
+    fetch(`/organisations/${event.target.id}/join_organisation`, {method: "POST", headers: {"X-CSRF-Token": this.getMetaValue("csrf-token")}})
+    .then(response => response.text())
+    .then((data)
+    )
 
-      this.professionalTarget.classList.remove("d-none")
+  }
 
+  getMetaValue = (name) => {
+    const element = document.head.querySelector(`meta[name="${name}"]`)
+    return element.getAttribute("content")
   }
 }

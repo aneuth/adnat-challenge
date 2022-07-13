@@ -22,7 +22,7 @@
 
         <div>
           <% @organisations.order(name: :asc).each do |organisation| %>
-            <h5><%= organisation.name %> <%= render partial: "shared/edit_organisation", locals: {organisation: organisation} %>, <%= link_to "join", organisation_path(organisation), data: {action: "click->join-organisation#join"} %> </h5>
+            <h5><%= organisation.name %> <%= render partial: "shared/edit_organisation", locals: {organisation: organisation} %>, <%= link_to "join", data: {action: "click->join-organisation#join"} %> </h5>
           <% end %>
         </div>
       </div>
