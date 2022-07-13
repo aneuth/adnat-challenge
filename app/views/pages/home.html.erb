@@ -21,7 +21,7 @@
         <h1 class="mt-5 mb-4">Organisations</h1>
 
         <div>
-          <% @organisations.each do |organisation| %>
+          <% @organisations.order(name: :asc).each do |organisation| %>
             <h5><%= organisation.name %> <%= render partial: "shared/edit_organisation", locals: {organisation: organisation} %>, <%= link_to "join", organisation_path(organisation), data: {action: "click->join-organisation#join"} %> </h5>
           <% end %>
         </div>
