@@ -25,20 +25,21 @@
 
 <div class="row justify-content-center">
   <div class="col-auto">
-    <button type="button" class="btn-purple" data-bs-toggle="modal" data-bs-target="#edit-organisation">
-      Edit organisation
+    <button type="button" class="btn-purple-sm" data-bs-toggle="modal" data-bs-target="#modal-<%= organisation.id %>">
+      Edit
     </button>
 
-    <div class="modal fade" id="edit-organisation" tabindex="-1" aria-labelledby="edit-organisationLabel" aria-hidden="true">
+    <div class="modal fade" id="modal-<%= organisation.id %>" tabindex="-1" aria-labelledby="modal-<%= organisation.id %>Label" aria-hidden="true">
       <div class="modal-dialog text-white">
         <div class="mask-window modal-content justify-content-center">
           <div class="modal-header">
-            <h5 class="text-center modal-title" id="edit-organisationLabel"> Edit organisation </h5>
+            <h5 class="text-center modal-title" id="modal-<%= organisation.id %>Label"> Edit organisation </h5>
           </div>
           <div class="modal-body">
             <%= simple_form_for organisation do |f| %>
               <div class="form-inputs w-100">
-                <%= f.input :name %>
+                <%= f.input :name,
+                            input_html: { autocomplete: "#{organisation.name}" }%>
                 <%= f.input :hourly_rate %>
               </div>
               <div class="form-actions">
