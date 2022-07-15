@@ -9,5 +9,4 @@ Rails.application.routes.draw do
     resources :shifts, only: [:index]
     get :join_organisation, to: "users#join_organisation"
   end
-
 end

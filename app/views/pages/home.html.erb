@@ -12,19 +12,26 @@
       </div>
 
     <% else %>
-      <div data-join-organisation-target = "does-not-belong">
-        <h3>Logged in as <%= current_user.name %> </h3>
 
-        <h5> You aren't a member of any organisations </h5>
-        <h5> Join an existing one or create a new one </h5>
+      <h3>Logged in as <%= current_user.name %> </h3>
 
-        <h1 class="mt-5 mb-4">Organisations</h1>
+      <h5> You aren't a member of any organisations </h5>
+      <h5> Join an existing one or create a new one </h5>
 
-        <div>
-          <% @organisations.order(name: :asc).each do |organisation| %>
-            <h5><%= organisation.name %> <%= render partial: "shared/edit_organisation", locals: {organisation: organisation} %>, <%= link_to "join", data: {action: "click->join-organisation#join"} %> </h5>
+      <h1 class="mt-5 mb-4">Organisations</h1>
+
+      <div>
+        <% @organisations.order(name: :asc).each do |organisation| %>
+          <div class="d-flex align-items-center">
+          <h5 class="mx-3 my-3"> <%= organisation.name %> </h5>
+          <%= render partial: "shared/edit_organisation", locals: {organisation: organisation}%>
+          <%= link_to organisation_join_organisation_path(organisation) do %>
+            <button type="button" class="btn-purple-sm mx-3 my-3" data-bs-toggle="modal" data-bs-target="#modal-<%= organisation.id %>">
+              Join
+            </button>
           <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
 
     <% end %>
