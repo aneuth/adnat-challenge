@@ -3,12 +3,15 @@
   <div data-controller="join-organisation">
 
     <% if current_user.organisation %>
-      <div data-join-organisation-target = "belongs">
+      <h5><%= current_user.organisation.name %></h5>
+      <div class="d-flex align-items-center">
+        <%= link_to shifts_path do %>
+          <button type="button" class="btn-purple-sm mx-3 my-3">
+            View Shifts
+          </button>
+        <% end %>
+        <%= render partial: "shared/edit_organisation", locals: {organisation: current_user.organisation}%>
 
-          <h5><%= current_user.organisation.name %>
-          <%# <%= link_to "View shifts",  %>
-          <%# <%= link_to "Edite",  %>
-          <%# <%= link_to "Leave",  %>
       </div>
 
     <% else %>
@@ -25,8 +28,8 @@
           <div class="d-flex align-items-center">
           <h5 class="mx-3 my-3"> <%= organisation.name %> </h5>
           <%= render partial: "shared/edit_organisation", locals: {organisation: organisation}%>
-          <%= link_to organisation_join_organisation_path(organisation) do %>
-            <button type="button" class="btn-purple-sm mx-3 my-3" data-bs-toggle="modal" data-bs-target="#modal-<%= organisation.id %>">
+          <%= link_to organisation_join_path(organisation) do %>
+            <button type="button" class="btn-purple-sm mx-3 my-3">
               Join
             </button>
           <% end %>

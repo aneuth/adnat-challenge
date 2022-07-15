@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :organisations, only: [:create, :edit, :update] do
-    resources :shifts, only: [:index]
-    get :join_organisation, to: "users#join_organisation"
+    get :join_organisation, to: "users#join_organisation", as: :join
   end
+
+  resources :shifts, only: [:index], as: :shifts
 end
