@@ -8,12 +8,23 @@
 
 puts "Deleteting data"
 
+User.delete_all
 Organisation.delete_all
 
 puts "Seeding data"
 
+# organisation = Organisation.create(name: Faker::Restaurant.name, hourly_rate: rand(10..20))
+# user = User.create(name: "Anna")
+# user.organisation = user.id
+# puts user
+
 3.times do
   organisation = Organisation.create(name: Faker::Restaurant.name, hourly_rate: rand(10..20))
+  3.times do
+    user = User.create(name: Faker::Name.name, email: Faker::Internet.email, password: "123456")
+    user.organisation = organisation
+    puts user.name
+  end
   puts organisation.name
 end
 
