@@ -13,16 +13,12 @@ Organisation.delete_all
 
 puts "Seeding data"
 
-# organisation = Organisation.create(name: Faker::Restaurant.name, hourly_rate: rand(10..20))
-# user = User.create(name: "Anna")
-# user.organisation = user.id
-# puts user
-
 3.times do
   organisation = Organisation.create(name: Faker::Restaurant.name, hourly_rate: rand(10..20))
   3.times do
-    # shift = Shift.create(start: )
+    shift = Shift.create(shift_date: Faker::Date.in_date_period.strftime("%m/%d/%Y"), start: "10:30am", finish: "14:30pm")
     user = User.create(name: Faker::Name.name, email: Faker::Internet.email, password: "123456")
+    shift.user = shift
     user.organisation = organisation
     puts user.name
   end
