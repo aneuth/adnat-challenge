@@ -1,4 +1,4 @@
-<table>
+<table class="mt-5">
 
   <tr>
     <th>Employee name</th>
@@ -17,8 +17,8 @@
       <td><%= shift.start.strftime("%I:%M%P") %></td>
       <td><%= shift.finish.strftime("%I:%M%P") %></td>
       <td><%= shift.break_length %></td>
-      <td><%= shift.hours_worked %></td>
-      <td><%= shift.shift_cost %></td>
+      <td><%= shift.hours_worked.round(1) %></td>
+      <td><%= shift.shift_cost.round(1) %></td>
 
     </tr>
   <% end %>

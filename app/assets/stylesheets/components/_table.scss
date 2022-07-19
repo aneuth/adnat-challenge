@@ -1,0 +1,15 @@
+table {
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+table td {
+  padding: 1rem;
+  border: 2px solid $light-gray;
+}
+
+table th {
+  color: $purple;
+  padding: 1rem;
+  border: 2px solid $light-gray;
+}
