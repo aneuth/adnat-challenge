@@ -33,6 +33,9 @@ gem "devise"
 # Faker gem
 gem "faker"
 
+# Time_difference gem
+gem 'time_difference'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
