@@ -13,10 +13,19 @@
 
         <% if user_signed_in? %>
 
+          <li class="nav-item tabs">
+            <%= link_to "Home", root_path, class: "nav-professionals #{controller_name == "pages" ? "current" : ""}" %>
+          </li>
+
+          <li class="nav-item tabs">
+            <%= link_to "My profile", my_profile_path, class: "nav-professionals #{controller_name == "users" ? "current" : ""}" %>
+          </li>
+
           <li class="nav-item dropdown ml-3">
             <%= image_tag 'AnnaEfthymiadou', class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+              <%= link_to "My Profile", my_profile_path, class: "dropdown-item" %>
             </div>
           </li>
 

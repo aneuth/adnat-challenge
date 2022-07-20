@@ -13,4 +13,7 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def my_profile
+    redirect_to root_path unless current_user
+  end
 end

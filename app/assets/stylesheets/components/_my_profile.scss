@@ -1,0 +1,60 @@
+
+.profile-image {
+  position: sticky;
+  top: 30vh;
+  opacity: 0.5;
+
+  img {
+    right: 80px;
+    width: 550px;
+  }
+}
+
+.profile-name {
+
+  margin-top: 10rem;
+
+  i {
+    color: $light-gray;
+    font-size: 28px;
+
+  }
+
+  a {
+    padding: 0px !important;
+    text-decoration: none;
+  }
+
+  h1 {
+    font-size: 46px;
+  }
+
+
+  p {
+    color: $light-gray;
+    font-size: 24px;
+  }
+
+}
+
+.profile-basic {
+
+  .row {
+    padding: 12px 0px;
+  }
+
+  h2 {
+    color: $white;
+  }
+
+  i {
+    color: $purple;
+    font-size: 32px;
+  }
+
+  p {
+    color: $light-gray;
+    font-size: 24px;
+  }
+
+}
