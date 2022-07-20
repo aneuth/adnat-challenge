@@ -24,6 +24,18 @@
       <td><%= shift.break_length %></td>
       <td><%= shift.hours_worked.round(1) %></td>
       <td><%= shift.shift_cost.round(1) %></td>
+      <% if shift.user == current_user %>
+        <td>
+          <%= render partial: "shared/edit_shift", locals: {shift: shift}%>
+        </td>
+        <td>
+          <%= link_to "Delete",
+            shift_path(shift),
+            data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
+            class: "btn-purple-sm px-3 py-2"
+          %>
+        </td>
+      <% end %>
     </tr>
   <% end %>
 

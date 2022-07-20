@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   get :leave_organisation, to: "users#leave_organisation", as: :leave
 
-  resources :shifts, only: [:index, :create], as: :shifts
+  resources :shifts, only: [:index, :create, :edit, :update, :destroy], as: :shifts
 
   get :my_profile, to: "users#my_profile"
 end

@@ -1,5 +1,6 @@
 class ShiftsController < ApplicationController
-  before_action :set_params, only: [:create]
+  before_action :set_params, only: [:create, :update]
+
   def index
     @shifts = current_user.organisation.shifts
     @shifts.sort_by(&:start)
@@ -11,6 +12,18 @@ class ShiftsController < ApplicationController
     @shift.user = current_user
     @shift.save
     redirect_to shifts_path
+  end
+
+  def update
+    @shift = Shift.find(params[:id])
+    @shift.update(shift_params)
+    redirect_to shifts_path
+  end
+
+  def destroy
+    @shift = Shift.find(params[:id])
+    @shift.destroy
+    redirect_to shifts_path, status: :see_other
   end
 
   private

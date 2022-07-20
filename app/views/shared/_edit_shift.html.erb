@@ -1,0 +1,78 @@
+<style>
+
+.mask-window {
+  backdrop-filter: blur(15px);
+  background-color: rgba(255,255,255,.5);
+  border-radius: 1em;
+  border: 2px solid rgba(255,255,255,.1);
+  background-clip: padding-box;
+  box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+  min-height: 175px;
+  min-width: 300px;
+}
+
+.modal-header {
+  justify-content: center;
+  font-size: 30px;
+  border: 1px solid transparent;
+}
+
+.modal-content {
+  background-color: #9334E9;
+}
+
+</style>
+
+<div class="row justify-content-center">
+  <div class="col-auto">
+    <button type="button" class="btn-purple-sm mx-3 my-3" data-bs-toggle="modal" data-bs-target="#modal-<%= shift.id %>">
+      Edit
+    </button>
+
+    <div class="modal fade" id="modal-<%= shift.id %>" tabindex="-1" aria-labelledby="modal-<%= shift.id %>Label" aria-hidden="true">
+      <div class="modal-dialog text-white">
+        <div class="mask-window modal-content justify-content-center">
+          <div class="modal-header">
+            <h5 class="text-center modal-title" id="modal-<%= shift.id %>Label"> Edit shift </h5>
+          </div>
+          <div class="modal-body">
+            <%= simple_form_for shift do |f| %>
+              <div class="form-inputs w-100">
+                <div class="mb-3">
+                  <%= f.date_select :start,
+                                    html5: true,
+                                    label: "Shift date",
+                                    required: false,
+                                    input_html: { autocomplete: "#{shift.start.strftime("%d/%m/%Y")}" } %>
+                </div>
+                <div class="mb-3">
+                  <%= f.time_select :start,
+                                    label: "Start time",
+                                    html5: true,
+                                    required: false,
+                                    ignore_date: true,
+                                    input_html: { autocomplete: "#{shift.start.strftime("%I:%M%P")}" } %>
+                </div>
+                <div class="mb-3">
+                  <%= f.time_select :finish,
+                                    required: false,
+                                    ignore_date: true,
+                                    input_html: { autocomplete: "#{shift.finish.strftime("%I:%M%P")}" } %>
+                </div>
+                <div>
+                  <%= f.input       :break_length,
+                                    required: false,
+                                    input_html: { autocomplete: "#{shift.break_length}" } %>
+                </div>
+              </div>
+              <div class="form-actions">
+                <%= f.button :submit, "Update", class: "btn btn-white" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
