@@ -6,4 +6,11 @@ class UsersController < ApplicationController
     current_user.save
     redirect_to root_path
   end
+
+  def leave_organisation
+    current_user.organisation = nil
+    current_user.save
+    redirect_to root_path
+  end
+
 end
