@@ -19,8 +19,11 @@
       <td><%= shift.break_length %></td>
       <td><%= shift.hours_worked.round(1) %></td>
       <td><%= shift.shift_cost.round(1) %></td>
-
     </tr>
   <% end %>
+
+  <tr>
+    <%= render partial: "shared/shift_form" %>
+  </tr>
 
 </table>

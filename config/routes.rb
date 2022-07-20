@@ -9,5 +9,5 @@ Rails.application.routes.draw do
     get :join_organisation, to: "users#join_organisation", as: :join
   end
 
-  resources :shifts, only: [:index], as: :shifts
+  resources :shifts, only: [:index, :create], as: :shifts
 end

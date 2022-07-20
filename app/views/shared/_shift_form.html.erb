@@ -1,0 +1,22 @@
+
+<td>
+  <%= current_user.name %>
+</td>
+
+<%= simple_form_for @shift do |f| %>
+  <td class="form-inputs">
+    <%= f.date_select :start, html5: true, required: true, label: false %>
+  </td>
+  <td class="form-inputs">
+    <%= f.time_select :start, ignore_date: true, html5: true, required: true, label: false %>
+  </td>
+  <td class="form-inputs">
+    <%= f.time_select :finish, ignore_date: true, html5: true, required: true, label: false %>
+  </td>
+  <td class="form-inputs">
+    <%= f.input :break_length, required: true, label: false %>
+  </td>
+  <td colspan="2" class="form-actions">
+    <%= f.button :submit, "Add shift", class: "form-btn" %>
+  </td>
+<% end %>
