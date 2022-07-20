@@ -1,0 +1,15 @@
+<div class="col-4 px-3">
+
+  <%= simple_form_for @organisation do |f| %>
+    <div class="form-inputs mb-3" >
+      <%= f.input :name, placeholder: "Enter company's name" %>
+    </div>
+    <div class="form-inputs mb-none" >
+      <%= f.input :hourly_rate, label: "Hourly rate $", placeholder: "Enter company's hourly rate" %>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, "Create and Join", class: "btn-index"%>
+    </div>
+  <% end %>
+
+</div>

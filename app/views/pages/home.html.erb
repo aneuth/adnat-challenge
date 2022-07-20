@@ -1,48 +1,50 @@
 <div class = "home-container">
 
-  <div data-controller="join-organisation">
+  <% if current_user.organisation %>
 
-    <% if current_user.organisation %>
-      <h5><%= current_user.organisation.name %></h5>
-      <div class="d-flex align-items-center">
-        <%= link_to shifts_path do %>
+    <h5><%= current_user.organisation.name %></h5>
+    <div class="d-flex align-items-center">
+      <%= link_to shifts_path do %>
+        <button type="button" class="btn-purple-sm mx-3 my-3">
+          View Shifts
+        </button>
+      <% end %>
+      <%= render partial: "shared/edit_organisation", locals: {organisation: current_user.organisation}%>
+      <%= link_to leave_path do %>
+        <button type="button" class="btn-purple-sm mx-3 my-3">
+          Leave
+        </button>
+      <% end %>
+    </div>
+
+  <% else %>
+
+    <h3 class="pt-3">Logged in as <%= current_user.name %> </h3>
+
+    <h5> You aren't a member of any organisations </h5>
+    <h5> Join an existing one or create a new one </h5>
+
+    <h1 class="mt-5 mb-4">Organisations</h1>
+
+    <div>
+      <% @organisations.order(name: :asc).each do |organisation| %>
+        <div class="d-flex align-items-center">
+        <h5 class="mx-3 my-3"> <%= organisation.name %> </h5>
+        <%= render partial: "shared/edit_organisation", locals: {organisation: organisation}%>
+        <%= link_to organisation_join_path(organisation) do %>
           <button type="button" class="btn-purple-sm mx-3 my-3">
-            View Shifts
+            Join
           </button>
         <% end %>
-        <%= render partial: "shared/edit_organisation", locals: {organisation: current_user.organisation}%>
-        <%= link_to leave_path do %>
-          <button type="button" class="btn-purple-sm mx-3 my-3">
-            Leave
-          </button>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
+    </div>
 
-    <% else %>
+    <h1 class="mt-5 mb-4">Create a new organisation</h1>
+    <%= render partial: "shared/create_organisation" %>
 
-      <h3>Logged in as <%= current_user.name %> </h3>
+  <% end %>
 
-      <h5> You aren't a member of any organisations </h5>
-      <h5> Join an existing one or create a new one </h5>
 
-      <h1 class="mt-5 mb-4">Organisations</h1>
-
-      <div>
-        <% @organisations.order(name: :asc).each do |organisation| %>
-          <div class="d-flex align-items-center">
-          <h5 class="mx-3 my-3"> <%= organisation.name %> </h5>
-          <%= render partial: "shared/edit_organisation", locals: {organisation: organisation}%>
-          <%= link_to organisation_join_path(organisation) do %>
-            <button type="button" class="btn-purple-sm mx-3 my-3">
-              Join
-            </button>
-          <% end %>
-          </div>
-        <% end %>
-      </div>
-
-    <% end %>
-
-  </div>
 
 </div>

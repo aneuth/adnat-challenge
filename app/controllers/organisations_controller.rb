@@ -3,7 +3,9 @@ class OrganisationsController < ApplicationController
   def create
     @organisation = Organisation.new(organisation_params)
     current_user.organisation = @organisation
+    current_user.save
     @organisation.save
+    redirect_to root_path
   end
 
   def update
