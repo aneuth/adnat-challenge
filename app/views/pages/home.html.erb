@@ -10,7 +10,7 @@
         </button>
       <% end %>
       <%= render partial: "shared/edit_organisation", locals: {organisation: current_user.organisation}%>
-      <%= link_to leave_path do %>
+      <%= link_to organisation_leave_path(current_user.organisation) do %>
         <button type="button" class="btn-purple-sm mx-3 my-3">
           Leave
         </button>

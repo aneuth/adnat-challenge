@@ -2,8 +2,7 @@ class ShiftsController < ApplicationController
   before_action :set_params, only: [:create, :update]
 
   def index
-    @shifts = current_user.organisation.shifts
-    @shifts.sort_by(&:start)
+    @shifts = current_user.organisation.shifts.order(start: :desc)
     @shift = Shift.new
   end
 

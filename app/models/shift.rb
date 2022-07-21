@@ -13,4 +13,8 @@ class Shift < ApplicationRecord
   def shift_cost
     hours_worked * self.user.organisation.hourly_rate
   end
+
+  def prior_shift!
+    self.prior_shift = true
+  end
 end
