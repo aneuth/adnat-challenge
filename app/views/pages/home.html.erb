@@ -2,8 +2,8 @@
 
   <% if current_user.organisation %>
 
-    <h5><%= current_user.organisation.name %></h5>
-    <div class="d-flex align-items-center">
+    <h1 class="mt-5 mb-4 text-center"> <%= current_user.organisation.name.capitalize %></h1>
+    <div class="d-flex align-items-center justify-content-center">
       <%= link_to shifts_path do %>
         <button type="button" class="btn-purple-sm mx-3 my-3">
           View Shifts

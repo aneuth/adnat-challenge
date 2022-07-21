@@ -29,13 +29,19 @@ class ShiftsController < ApplicationController
   end
 
   def view_prior
-    @organisation = current_user.organisation
     @shifts = []
     current_user.shifts.each do |shift|
       if shift.organisation == current_user.organisation
         @shifts << shift
       end
     end
+  end
+
+  def add_prior_shift
+    @shift = Shift.find(params[:id])
+    @shift.prior_shift = false
+    @shift.save
+    redirect_to shifts_path, notice: "Shift added to current shifts"
   end
 
   private

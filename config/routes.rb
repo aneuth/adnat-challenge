@@ -15,5 +15,7 @@ Rails.application.routes.draw do
 
   get :prior_shifts, to: "shifts#view_prior", as: :view_prior
 
+  get 'prior_shifts/:id/add_prior_shift', to: "shifts#add_prior_shift", as: :add_prior
+
   get :my_profile, to: "users#my_profile"
 end

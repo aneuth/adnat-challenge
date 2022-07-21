@@ -1,3 +1,8 @@
+<% if current_user.organisation %>
+  <h1 class="mt-5 mb-4 text-center"> <%= current_user.organisation.name.capitalize %> shifts </h1>
+<% end %>
+
+
 <div class="shifts-back">
   <br>
   <p><i class="fa-solid fa-arrow-left"></i><%= link_to "Back to Organisation", root_path %></p>

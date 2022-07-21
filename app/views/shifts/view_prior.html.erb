@@ -25,11 +25,13 @@
         <td><%= shift.break_length %></td>
         <td><%= shift.hours_worked.round(1) %></td>
         <td><%= shift.shift_cost.round(1) %></td>
-        <%# if shift.user == current_user %>
-          <%# <td> %>
-            <%# <%= render partial: "shared/edit_shift", locals: {shift: shift}%>
-          <%# </td> %>
-        <%# end %>
+        <td>
+          <%= link_to add_prior_path(shift) do %>
+            <button type="button" class="btn-purple-sm mx-3 my-3">
+              Add back
+            </button>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   <% end %>
