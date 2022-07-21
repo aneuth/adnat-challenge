@@ -9,6 +9,14 @@
     <% else %>
       <%= brk.break_length %>,
     <% end %>
+    <% if shift.user == current_user %>
+      <br>
+      <%= link_to organisation_join_path(organisation) do %>
+        <button type="button" class="btn-purple-sm px-2 py-2 mt-2">
+          Add break
+        </button>
+      <% end %>
+    <% end %>
   <% end %>
 </td>
 <td><%= shift.hours_worked.round(1) %></td>
