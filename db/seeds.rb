@@ -8,6 +8,7 @@
 
 puts "Deleteting data"
 
+Break.delete_all
 Shift.delete_all
 User.delete_all
 Organisation.delete_all

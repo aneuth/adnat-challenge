@@ -16,8 +16,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_182704) do
 
   create_table "breaks", force: :cascade do |t|
     t.integer "break_length"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "integer"
     t.bigint "shift_id"
     t.index ["shift_id"], name: "index_breaks_on_shift_id"
   end

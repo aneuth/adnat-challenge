@@ -60,9 +60,9 @@
                                     input_html: { autocomplete: "#{shift.finish.strftime("%I:%M%P")}" } %>
                 </div>
                 <div>
-                  <%= f.input       :break_length,
-                                    required: false,
-                                    input_html: { autocomplete: "#{shift.break_length}" } %>
+                  <%= f.simple_fields_for :breaks do |w| %>
+                    <%=  w.input :break_length, required: true, label: false, multiple: true %>
+                  <% end %>
                 </div>
               </div>
               <div class="form-actions">

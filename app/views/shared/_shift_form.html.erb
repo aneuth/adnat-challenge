@@ -15,7 +15,7 @@
   </td>
   <td class="form-inputs">
     <%= f.simple_fields_for :breaks do |w| %>
-      <%= w.input :break_length, required: true, label: false %>
+      <%= w.input :break_length, required: true, label: false, multiple: true %>
     <% end %>
   </td>
   <td colspan="2" class="form-actions">

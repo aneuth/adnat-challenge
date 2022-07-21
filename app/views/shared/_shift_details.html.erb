@@ -1,0 +1,15 @@
+<td><%= shift.user.name %></td>
+<td><%= shift.start.strftime("%d/%m/%Y") %></td>
+<td><%= shift.start.strftime("%I:%M%P") %></td>
+<td><%= shift.finish.strftime("%I:%M%P") %></td>
+<td>
+  <% shift.breaks.each do |brk| %>
+    <% if shift.breaks %>
+      <%= brk.break_length %>
+    <% else %>
+      <%= brk.break_length %>,
+    <% end %>
+  <% end %>
+</td>
+<td><%= shift.hours_worked.round(1) %></td>
+<td><%= shift.shift_cost.round(1) %></td>

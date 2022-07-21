@@ -19,6 +19,7 @@ class ShiftsController < ApplicationController
   end
 
   def update
+    # @shift.breaks.build
     @shift.update(shift_params)
     redirect_to shifts_path
   end
@@ -46,7 +47,7 @@ class ShiftsController < ApplicationController
   private
 
   def shift_params
-    params.require(:shift).permit(:start, :finish, :break_id)
+    params.require(:shift).permit(:start, :finish, breaks_attributes: [:break_length, :id])
   end
 
   def set_params

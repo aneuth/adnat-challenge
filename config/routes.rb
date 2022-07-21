@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :organisations, only: [:create, :edit, :update] do
     get :join_organisation, to: "users#join_organisation", as: :join
     get :leave_organisation, to: "users#leave_organisation", as: :leave
-    resources :shifts, only: [:create], as: :shifts
+    resources :shifts, only: [:create, :update], as: :shifts
   end
 
   resources :shifts, only: [:index, :edit, :update, :destroy], as: :shifts

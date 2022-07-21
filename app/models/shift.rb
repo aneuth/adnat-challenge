@@ -1,7 +1,7 @@
 class Shift < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :organisation, optional: true
-  has_many :breaks
+  has_many :breaks, dependent: :destroy
 
   accepts_nested_attributes_for :breaks
 
@@ -9,13 +9,16 @@ class Shift < ApplicationRecord
     TimeDifference.between(start, finish).in_hours
   end
 
-  def break_length
-    @breaks = Break.select { |brk| brk.organisation.id = user.organisation.id }
-    @breaks.sum
+  def brk_length
+    sum = 0
+    self.breaks.each do |brk|
+      sum += brk.break_length
+    end
+    sum
   end
 
   def hours_worked
-    shift_length - (break_length / 60)
+    shift_length - (brk_length / 60)
   end
 
   def shift_cost
