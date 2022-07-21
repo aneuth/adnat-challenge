@@ -4,7 +4,7 @@
 <td><%= shift.finish.strftime("%I:%M%P") %></td>
 <td>
   <% shift.breaks.each do |brk| %>
-    <% if shift.breaks %>
+    <% if brk == shift.breaks.last %>
       <%= brk.break_length %>
     <% else %>
       <%= brk.break_length %>,
