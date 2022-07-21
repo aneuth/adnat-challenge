@@ -2,12 +2,15 @@ class ShiftsController < ApplicationController
   before_action :set_params, only: [:create, :update]
 
   def index
-    @shifts = current_user.organisation.shifts.order(start: :desc)
+    @organisation = current_user.organisation
+    @shifts = @organisation.shifts.order(start: :desc)
     @shift = Shift.new
   end
 
   def create
+    @organisation = Organisation.find(params[:organisation_id])
     @shift = Shift.new(shift_params)
+    @shift.organisation = @organisation
     @shift.user = current_user
     @shift.save
     redirect_to shifts_path
@@ -26,9 +29,10 @@ class ShiftsController < ApplicationController
   end
 
   def view_prior
+    @organisation = current_user.organisation
     @shifts = []
     current_user.shifts.each do |shift|
-      if shift.user.organisation.id == current_user.organisation_id
+      if shift.organisation == current_user.organisation
         @shifts << shift
       end
     end

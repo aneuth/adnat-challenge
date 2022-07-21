@@ -1,6 +1,6 @@
 class Shift < ApplicationRecord
   belongs_to :user, optional: true
-  has_one :organisation, through: :user
+  belongs_to :organisation, optional: true
 
   def shift_length
     TimeDifference.between(start, finish).in_hours

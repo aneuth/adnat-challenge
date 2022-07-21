@@ -24,6 +24,7 @@ puts "Seeding data"
       break_length: [0, 10, 20, 30, 40, 50, 60].sample
     )
     shift.user = user
+    shift.organisation = organisation
     user.organisation = organisation
     user.save
     shift.save
