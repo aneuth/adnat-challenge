@@ -25,6 +25,15 @@ class ShiftsController < ApplicationController
     redirect_to shifts_path, status: :see_other
   end
 
+  def view_prior
+    @shifts = []
+    current_user.shifts.each do |shift|
+      if shift.user.organisation.id == current_user.organisation_id
+        @shifts << shift
+      end
+    end
+  end
+
   private
 
   def shift_params

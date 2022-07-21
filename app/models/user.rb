@@ -6,5 +6,5 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   belongs_to :organisation, optional: true
-  has_many :shifts, dependent: :destroy
+  has_many :shifts, dependent: :nullify
 end

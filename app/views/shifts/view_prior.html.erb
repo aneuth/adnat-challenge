@@ -1,0 +1,42 @@
+<% if current_user.organisation %>
+  <h1 class="mt-5 mb-4 text-center">Your previous shifts with <%= current_user.organisation.name %> </h1>
+<% end %>
+
+<table class="mt-5 mb-5">
+
+ <tr>
+    <th>Employee name</th>
+    <th>Shift date</th>
+    <th>Start time</th>
+    <th>Finish time</th>
+    <th>Break length (minutes)</th>
+    <th>Hours worked</th>
+    <th>Shift cost</th>
+  </tr>
+
+  <% @shifts.each do |shift| %>
+
+    <% if shift.prior_shift == true %>
+      <tr>
+        <td><%= shift.user.name %></td>
+        <td><%= shift.start.strftime("%d/%m/%Y") %></td>
+        <td><%= shift.start.strftime("%I:%M%P") %></td>
+        <td><%= shift.finish.strftime("%I:%M%P") %></td>
+        <td><%= shift.break_length %></td>
+        <td><%= shift.hours_worked.round(1) %></td>
+        <td><%= shift.shift_cost.round(1) %></td>
+        <%# if shift.user == current_user %>
+          <%# <td> %>
+            <%# <%= render partial: "shared/edit_shift", locals: {shift: shift}%>
+          <%# </td> %>
+        <%# end %>
+      </tr>
+    <% end %>
+  <% end %>
+
+</table>
+
+<div class="shifts-back">
+  <br>
+  <p><i class="fa-solid fa-arrow-left"></i><%= link_to "Back to all shifts", shifts_path %></p>
+</div>
