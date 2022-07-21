@@ -6,6 +6,7 @@ class ShiftsController < ApplicationController
     @organisation = current_user.organisation
     @shifts = @organisation.shifts.order(start: :desc)
     @shift = Shift.new
+    @shift.breaks.build
   end
 
   def create
@@ -45,7 +46,7 @@ class ShiftsController < ApplicationController
   private
 
   def shift_params
-    params.require(:shift).permit(:start, :finish, :break_length)
+    params.require(:shift).permit(:start, :finish, :break_id)
   end
 
   def set_params

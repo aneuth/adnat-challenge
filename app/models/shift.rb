@@ -1,9 +1,17 @@
 class Shift < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :organisation, optional: true
+  has_many :breaks
+
+  accepts_nested_attributes_for :breaks
 
   def shift_length
     TimeDifference.between(start, finish).in_hours
+  end
+
+  def break_length
+    @breaks = Break.select { |brk| brk.organisation.id = user.organisation.id }
+    @breaks.sum
   end
 
   def hours_worked

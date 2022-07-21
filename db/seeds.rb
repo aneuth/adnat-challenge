@@ -21,8 +21,12 @@ puts "Seeding data"
     shift = Shift.create(
       start: Faker::Time.backward(days: 1, period: :morning),
       finish: Faker::Time.backward(days: 1, period: :evening),
-      break_length: [0, 10, 20, 30, 40, 50, 60].sample
     )
+    3.times do
+      brk = Break.create(break_length: [0, 10, 20, 30, 40, 50, 60].sample)
+      brk.shift = shift
+      brk.save
+    end
     shift.user = user
     shift.organisation = organisation
     user.organisation = organisation
