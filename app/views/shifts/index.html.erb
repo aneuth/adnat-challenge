@@ -24,6 +24,7 @@
     <% if shift.prior_shift == false %>
       <tr>
         <%= render partial: "shared/shift_details", locals: {shift: shift} %>
+        <!-- only shifts that belong to current user can be editted/deleted-->
         <% if shift.user == current_user %>
           <td>
             <%= render partial: "shared/edit_shift", locals: {shift: shift}%>

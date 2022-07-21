@@ -6,6 +6,7 @@ class ShiftsController < ApplicationController
     @organisation = current_user.organisation
     @shifts = @organisation.shifts.order(start: :desc)
     @shift = Shift.new
+    # need to build shift breaks to make input field visible
     @shift.breaks.build
   end
 
@@ -19,7 +20,6 @@ class ShiftsController < ApplicationController
   end
 
   def update
-    # @shift.breaks.build
     @shift.update(shift_params)
     redirect_to shifts_path
   end
@@ -47,10 +47,12 @@ class ShiftsController < ApplicationController
   private
 
   def shift_params
+    # need to add breaks_attributes parameter to create/update shift, need to permit :id attribute to update shift
     params.require(:shift).permit(:start, :finish, breaks_attributes: [:break_length, :id])
   end
 
   def set_params
+    # set finish date parameters equal to start date parameters, as there is no input for finish date
     params[:shift].merge!({
       'finish(1i)': params[:shift]['start(1i)'],
       'finish(2i)': params[:shift]['start(2i)'],
