@@ -1,5 +1,6 @@
 class ShiftsController < ApplicationController
   before_action :set_params, only: [:create, :update]
+  before_action :set_shift, only: [:update, :destroy, :add_prior_shift]
 
   def index
     @organisation = current_user.organisation
@@ -17,13 +18,11 @@ class ShiftsController < ApplicationController
   end
 
   def update
-    @shift = Shift.find(params[:id])
     @shift.update(shift_params)
     redirect_to shifts_path
   end
 
   def destroy
-    @shift = Shift.find(params[:id])
     @shift.destroy
     redirect_to shifts_path, status: :see_other
   end
@@ -38,7 +37,6 @@ class ShiftsController < ApplicationController
   end
 
   def add_prior_shift
-    @shift = Shift.find(params[:id])
     @shift.prior_shift = false
     @shift.save
     redirect_to shifts_path, notice: "Shift added to current shifts"
@@ -56,5 +54,9 @@ class ShiftsController < ApplicationController
       'finish(2i)': params[:shift]['start(2i)'],
       'finish(3i)': params[:shift]['start(3i)']
     })
+  end
+
+  def set_shift
+    @shift = Shift.find(params[:id])
   end
 end
