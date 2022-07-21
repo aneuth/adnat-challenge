@@ -3,7 +3,7 @@
   <%= current_user.name %>
 </td>
 
-<%= simple_form_for [@organisation, @shift] do |f| %>
+<%= simple_form_for [@organisation, @shift], data: {turbo: false} do |f| %>
   <td class="form-inputs">
     <%= f.date_select :start, html5: true, required: true, label: false %>
   </td>
