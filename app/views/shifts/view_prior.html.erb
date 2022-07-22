@@ -4,14 +4,8 @@
 
 <table class="mt-5 mb-5">
 
- <tr>
-    <th>Employee name</th>
-    <th>Shift date</th>
-    <th>Start time</th>
-    <th>Finish time</th>
-    <th>Break length (minutes)</th>
-    <th>Hours worked</th>
-    <th>Shift cost</th>
+  <tr>
+    <%= render partial: "shared/table_headers" %>
   </tr>
 
   <% @shifts.each do |shift| %>
