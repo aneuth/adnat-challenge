@@ -15,11 +15,11 @@
   <% if shift.user == current_user %>
     <br>
     <%= simple_form_for @break do |f|%>
-      <div class="form-inputs">
+      <div class="form-inputs mt-2">
         <%= f.input :break_length, required: true, label: false %>
       </div>
       <div class="form-actions">
-        <%= f.button :submit, "Add break", class: "form-btn m-0" %>
+        <%= f.button :submit, "Add break", class: "break-btn m-0" %>
       </div>
     <% end %>
   <% end %>
