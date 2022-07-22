@@ -6,6 +6,7 @@ class ShiftsController < ApplicationController
     @organisation = current_user.organisation
     @shifts = @organisation.shifts.order(start: :desc)
     @shift = Shift.new
+    @break = Break.new
     # need to build shift breaks to make input field visible
     @shift.breaks.build
   end

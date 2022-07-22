@@ -3,21 +3,27 @@
 <td><%= shift.start.strftime("%I:%M%P") %></td>
 <td><%= shift.finish.strftime("%I:%M%P") %></td>
 <td>
+
   <% shift.breaks.each do |brk| %>
     <% if brk == shift.breaks.last %>
       <%= brk.break_length %>
     <% else %>
       <%= brk.break_length %>,
     <% end %>
-    <% if shift.user == current_user %>
-      <br>
-      <%= link_to organisation_join_path(organisation) do %>
-        <button type="button" class="btn-purple-sm px-2 py-2 mt-2">
-          Add break
-        </button>
-      <% end %>
+  <% end %>
+
+  <% if shift.user == current_user %>
+    <br>
+    <%= simple_form_for @break do |f|%>
+      <div class="form-inputs">
+        <%= f.input :break_length, required: true, label: false %>
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, "Add break", class: "form-btn m-0" %>
+      </div>
     <% end %>
   <% end %>
+
 </td>
 <td><%= shift.hours_worked.round(1) %></td>
 <td><%= shift.shift_cost.round(1) %></td>
