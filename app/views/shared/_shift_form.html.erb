@@ -16,7 +16,7 @@
   <td class="form-inputs">
     <!-- use simple_fields_for for shifts and breaks nested attributes -->
     <%= f.simple_fields_for :breaks do |w| %>
-      <%= w.input :break_length, required: true, label: false %>
+      <%= w.input :break_length, required: true, label: false, wrapper:false %>
     <% end %>
   </td>
   <td colspan="2" class="form-actions">
