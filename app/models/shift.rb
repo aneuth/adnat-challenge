@@ -28,4 +28,15 @@ class Shift < ApplicationRecord
   def prior_shift!
     self.prior_shift = true
   end
+
+  def add_day_to_finish
+    # update shift's finish date to be one day ahead of start date
+    updated_finish = finish.change(day: start.day + 1)
+    self.finish = updated_finish
+  end
+
+  def overnight
+    # check if finish time is earlier than start time
+    start.strftime("%H:%M") > finish.strftime("%H:%M")
+  end
 end

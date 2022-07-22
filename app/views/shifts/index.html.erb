@@ -18,13 +18,15 @@
     <% if shift.prior_shift == false %>
       <tr>
         <%= render partial: "shared/shift_details", locals: {shift: shift} %>
-        <!-- only shifts that belong to current user can be editted/deleted/break added-->
-        <% if shift.start.strftime("%H:%M") > shift.finish.strftime("%H:%M") %>
+
+        <!-- check if shift is overnight -->
+        <% if shift.overnight %>
           <td> Overnight </td>
         <% else %>
           <td> Day </td>
         <% end %>
 
+        <!-- only shifts that belong to current user can be editted/deleted/break added-->
         <% if shift.user == current_user %>
           <td>
             <%= render partial: "shared/edit_shift", locals: {shift: shift}%>
