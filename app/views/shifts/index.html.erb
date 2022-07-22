@@ -31,7 +31,7 @@
             %>
           </td>
         <% end %>
-        <% if shift.start.strftime("%I:%M") > shift.finish.strftime("%I:%M") %>
+        <% if shift.start.strftime("%H:%M") > shift.finish.strftime("%H:%M") %>
           <td> <p> Overnight </p> </td>
         <% else %>
           <td> <p> Day </p> </td>
