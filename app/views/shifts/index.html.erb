@@ -8,7 +8,7 @@
   <p><i class="fa-solid fa-arrow-left"></i><%= link_to "Back to Organisation", root_path %></p>
 </div>
 
-<table class="mt-5 mb-2">
+<table class="mt-5 mb-2 shifts">
 
   <tr>
     <%= render partial: "shared/table_headers" %>
@@ -19,6 +19,12 @@
       <tr>
         <%= render partial: "shared/shift_details", locals: {shift: shift} %>
         <!-- only shifts that belong to current user can be editted/deleted/break added-->
+        <% if shift.start.strftime("%H:%M") > shift.finish.strftime("%H:%M") %>
+          <td> Overnight </td>
+        <% else %>
+          <td> Day </td>
+        <% end %>
+
         <% if shift.user == current_user %>
           <td>
             <%= render partial: "shared/edit_shift", locals: {shift: shift}%>
@@ -30,11 +36,6 @@
               class: "btn-purple-sm px-3 py-2"
             %>
           </td>
-        <% end %>
-        <% if shift.start.strftime("%H:%M") > shift.finish.strftime("%H:%M") %>
-          <td> <p> Overnight </p> </td>
-        <% else %>
-          <td> <p> Day </p> </td>
         <% end %>
       </tr>
     <% end %>
