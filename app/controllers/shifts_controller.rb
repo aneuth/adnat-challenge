@@ -14,6 +14,7 @@ class ShiftsController < ApplicationController
   def create
     @organisation = Organisation.find(params[:organisation_id])
     @shift = Shift.new(shift_params)
+    # check if shift is overnight and change its finish date accordingly
     @shift.overnight ? @shift.add_day_to_finish : @shift
     @shift.organisation = @organisation
     @shift.user = current_user

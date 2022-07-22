@@ -29,3 +29,10 @@
 </td>
 <td><%= shift.hours_worked.round(1) %></td>
 <td><%= shift.shift_cost.round(1) %></td>
+
+<!-- check if shift is overnight -->
+<% if shift.overnight %>
+  <td> Overnight </td>
+<% else %>
+  <td> Day </td>
+<% end %>

@@ -13,6 +13,7 @@
     <% if shift.prior_shift == true %>
       <tr>
         <%= render partial: "shared/shift_details", locals: {shift: shift} %>
+
         <td>
           <%= link_to add_prior_path(shift) do %>
             <button type="button" class="btn-purple-sm mx-3 my-3">
