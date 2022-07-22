@@ -36,3 +36,28 @@
 <% else %>
   <td> Day </td>
 <% end %>
+
+<% if shift.prior_shift == true %>
+  <td>
+    <%= link_to add_prior_path(shift) do %>
+      <button type="button" class="btn-purple-sm mx-3 my-3">
+        Add back
+      </button>
+    <% end %>
+  </td>
+
+<% else %>
+  <!-- only shifts that belong to current user can be editted/deleted/break added-->
+  <% if shift.user == current_user %>
+    <td>
+      <%= render partial: "shared/edit_shift", locals: {shift: shift}%>
+    </td>
+    <td>
+      <%= link_to "Delete",
+        shift_path(shift),
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
+        class: "btn-purple-sm px-3 py-2"
+      %>
+    </td>
+  <% end %>
+<% end %>
