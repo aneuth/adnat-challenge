@@ -1,27 +1,34 @@
  <a href="#" class="btn-purple-shift" data-new-shift-target="button" data-action="click->new-shift#revealContent">Add new shift</a>
 
 <div class = "container">
-  <div class="row justify-content-center">
+  <div class="row justify-content-center col-5">
+
       <%= simple_form_for @shift, html: {class: "d-none shift-form", data: {new_shift_target: "form"}} do |f| %>
         <div class="text-end" data-action="click->new-shift#closeContent" >
           <i class="fa-solid fa-x"></i>
         </div>
-        <div class="content-input">
+
+        <h2 class="text-center">Add new shift</h2>
+
+        <div class="content-input mb-4">
           <%= f.label :start, "Select start date" %>
+          <br>
           <%= f.date_select :start, html5: true, required: true %>
         </div>
-        <div class="content-input">
+        <div class="content-input mb-4">
           <%= f.label :start, "Select start time" %>
+          <br>
           <%= f.time_select :start, ignore_date: true, html5: true, required: true %>
         </div>
-        <div class="content-input">
+        <div class="content-input mb-4">
           <%= f.label :finish, "Select finish time" %>
+          <br>
           <%= f.time_select :finish, ignore_date: true, html5: true, required: true %>
         </div>
         <div class="content-input">
           <!-- use simple_fields_for for shifts and breaks nested attributes -->
           <%= f.simple_fields_for :breaks do |w| %>
-            <%= f.label :finish, "Enter break length" %>
+            <%= f.label :break_length, "Enter break length" %>
             <%= w.input :break_length, required: true, label: false, wrapper:false %>
           <% end %>
         </div>
@@ -29,6 +36,7 @@
           <%= f.button :submit, "Add shift", class: "form-btn", data: {new_shift_target: "submit"}%>
         </div>
       <% end %>
+
   </div>
 
 </div>

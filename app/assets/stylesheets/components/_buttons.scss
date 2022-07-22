@@ -57,12 +57,10 @@
   color: $white;
   text-decoration: none;
   padding: 12px;
-  border-radius: 8px;
+  border-radius: 8px !important;
+  font-weight: bold;
   transition: 0.2s ease-out;
   box-shadow: inset 0 0 0 0 $dark-orange;
-  position: relative;
-  top: -15px;
-  right: -100px;
 
   &:hover {
     box-shadow: inset 270px 0 0 0 $purple;
