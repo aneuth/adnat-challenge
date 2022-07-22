@@ -21,7 +21,7 @@ puts "Seeding data"
     user = User.create(name: Faker::Name.name, email: Faker::Internet.email, password: "123456")
     shift = Shift.create(
       start: Faker::Time.backward(days: 1, period: :morning),
-      finish: Faker::Time.backward(days: 1, period: :evening),
+      finish: Faker::Time.backward(days: 1, period: :evening)
     )
     3.times do
       brk = Break.create(break_length: [0, 10, 20, 30, 40, 50, 60].sample)
