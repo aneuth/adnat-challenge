@@ -1,63 +1,67 @@
-<td><%= shift.user.name %></td>
-<td><%= shift.start.strftime(" %a, %d %b, %Y") %></td>
-<td><%= shift.start.strftime("%H:%M%P") %></td>
-<td><%= shift.finish.strftime("%H:%M%P")%></td>
-<td>
+<div>
 
-  <% shift.breaks.each do |brk| %>
-    <% if brk == shift.breaks.last %>
-      <%= brk.break_length %>
-    <% else %>
-      <%= brk.break_length %>,
-    <% end %>
-  <% end %>
+  <td><%= shift.user.name %></td>
+  <td><%= shift.start.strftime(" %a, %d %b, %Y") %></td>
+  <td><%= shift.start.strftime("%H:%M%P") %></td>
+  <td><%= shift.finish.strftime("%H:%M%P")%></td>
+  <td>
 
-  <% if shift.prior_shift == false %>
-    <% if shift.user == current_user %>
-      <br>
-      <%= simple_form_for @break do |f|%>
-        <div class="form-inputs mt-2">
-          <%= f.input :break_length, required: true, label: false %>
-        </div>
-        <div class="form-actions">
-          <%= f.button :submit, "Add break", class: "break-btn" %>
-        </div>
+    <% shift.breaks.each do |brk| %>
+      <% if brk == shift.breaks.last %>
+        <%= brk.break_length %>
+      <% else %>
+        <%= brk.break_length %>,
       <% end %>
     <% end %>
-  <% end %>
 
-</td>
-<td><%= shift.hours_worked.round(1) %></td>
-<td><%= shift.shift_cost.round(1) %></td>
-
-<!-- check if shift is overnight -->
-<% if shift.overnight %>
-  <td> Overnight </td>
-<% else %>
-  <td> Day </td>
-<% end %>
-
-<% if shift.prior_shift == true %>
-  <td>
-    <%= link_to add_prior_path(shift) do %>
-      <button type="button" class="btn-purple-sm mx-3 my-3">
-        Add back
-      </button>
+    <% if shift.prior_shift == false %>
+      <% if shift.user == current_user %>
+        <br>
+        <%= simple_form_for @break do |f|%>
+          <div class="form-inputs mt-2">
+            <%= f.input :break_length, required: true, label: false %>
+          </div>
+          <div class="form-actions">
+            <%= f.button :submit, "Add break", class: "break-btn" %>
+          </div>
+        <% end %>
+      <% end %>
     <% end %>
-  </td>
 
-<% else %>
-  <!-- only shifts that belong to current user can be editted/deleted/break added-->
-  <% if shift.user == current_user %>
-    <td>
-      <%= render partial: "shared/edit_shift", locals: {shift: shift}%>
-    </td>
-    <td>
-      <%= link_to "Delete",
-        shift_path(shift),
-        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
-        class: "btn-purple-sm px-3 py-2"
-      %>
-    </td>
+  </td>
+  <td><%= shift.hours_worked.round(1) %></td>
+  <td><%= shift.shift_cost.round(1) %></td>
+
+  <!-- check if shift is overnight -->
+  <% if shift.overnight %>
+    <td> Overnight </td>
+  <% else %>
+    <td> Day </td>
   <% end %>
-<% end %>
+
+  <% if shift.prior_shift == true %>
+    <td>
+      <%= link_to add_prior_path(shift) do %>
+        <button type="button" class="btn-purple-sm mx-3 my-3">
+          Add back
+        </button>
+      <% end %>
+    </td>
+
+  <% else %>
+    <!-- only shifts that belong to current user can be editted/deleted/break added-->
+    <% if shift.user == current_user %>
+      <td>
+        <%= render partial: "shared/edit_shift", locals: {shift: shift}%>
+      </td>
+      <td>
+        <%= link_to "Delete",
+          shift_path(shift),
+          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
+          class: "btn-purple-sm px-3 py-2"
+        %>
+      </td>
+    <% end %>
+  <% end %>
+
+</div>

@@ -8,8 +8,8 @@
   <p><i class="fa-solid fa-arrow-left"></i><%= link_to "Back to Organisation", root_path %></p>
 </div>
 
-<div data-controller="shift-movement">
-  <table class="mt-5 mb-2 shifts" >
+<div>
+  <table class="mt-5 mb-2 shifts">
 
     <tr>
       <%= render partial: "shared/table_headers" %>
@@ -17,19 +17,17 @@
 
     <% @shifts.each do |shift| %>
       <% if shift.prior_shift == false %>
-        <div data-controller="shifts">
-          <tr>
-            <%= render partial: "shared/shift_details", locals: {shift: shift} %>
-          </tr>
-        </div>
+        <tr>
+          <%= render partial: "shared/shift_details", locals: {shift: shift} %>
+        </tr>
       <% end %>
     <% end %>
 
-    <tr>
-      <%= render partial: "shared/shift_form" %>
-    </tr>
+  </table class="mb-5">
+</div>
 
-  </table>
+<div data-controller="new-shift", class="mt-5">
+  <%= render partial: "shared/shift_form" %>
 </div>
 
 <div class="shifts-back text-end">

@@ -1,0 +1,25 @@
+<% if current_user.organisation %>
+  <h1 class="mt-5 mb-4 text-center">Your previous shifts with <%= current_user.organisation.name %> </h1>
+<% end %>
+
+<table class="mt-5 mb-5">
+
+  <tr>
+    <%= render partial: "shared/table_headers" %>
+  </tr>
+
+  <% @shifts.each do |shift| %>
+
+    <% if shift.prior_shift == true %>
+      <tr>
+        <%= render partial: "shared/shift_details", locals: {shift: shift} %>
+      </tr>
+    <% end %>
+  <% end %>
+
+</table>
+
+<div class="shifts-back">
+  <br>
+  <p><i class="fa-solid fa-arrow-left"></i><%= link_to "Back to all shifts", shifts_path %></p>
+</div>

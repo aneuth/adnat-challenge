@@ -2,6 +2,8 @@ class ShiftsController < ApplicationController
   before_action :set_params, only: [:create, :update]
   before_action :set_shift, only: [:update, :destroy, :add_prior_shift]
 
+  skip_before_action :verify_authenticity_token
+
   def index
     @organisation = current_user.organisation
     @shifts = @organisation.shifts.order(start: :desc)
@@ -12,7 +14,7 @@ class ShiftsController < ApplicationController
   end
 
   def create
-    @organisation = Organisation.find(params[:organisation_id])
+    @organisation = current_user.organisation
     @shift = Shift.new(shift_params)
     # check if shift is overnight and change its finish date accordingly
     @shift.overnight ? @shift.add_day_to_finish : @shift

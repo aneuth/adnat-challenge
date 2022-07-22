@@ -7,8 +7,5 @@ import { application } from "./application"
 import HelloController from "./hello_controller.js"
 application.register("hello", HelloController)
 
-import ShiftMovementController from "./shift_movement_controller.js"
-application.register("shift-movement", ShiftMovementController)
-
-import ShiftsController from "./shifts_controller.js"
-application.register("shifts", ShiftsController)
+import NewShiftController from "./new_shift_controller.js"
+application.register("new-shift", NewShiftController)
