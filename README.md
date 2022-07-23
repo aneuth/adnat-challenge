@@ -50,9 +50,9 @@ rails -v
 ## Challenge requirements summary
 
 Created a simplified version of the Tanda web app where:
-- users who sign up for the first time are prompted to join/create an organisation
-- once joined, they are able to edit the organisation details or leave 
-- users can also view all shifts 
+- Users who sign up for the first time are prompted to join/create an organisation
+- Once joined, they are able to edit the organisation details or leave 
+- Users can also view all shifts 
 
 ## Challenge optional requirements summary
 
