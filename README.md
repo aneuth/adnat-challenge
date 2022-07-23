@@ -1,5 +1,5 @@
 
-## Instalation
+## Installation
 
 Run the following command to install the gems:
 
