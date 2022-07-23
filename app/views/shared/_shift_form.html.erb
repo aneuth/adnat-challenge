@@ -1,6 +1,6 @@
  <a href="#" class="btn-purple-shift" data-new-shift-target="button" data-action="click->new-shift#revealContent">Add new shift</a>
 
-<div class = "container">
+<div class = "container d-flex justify-content-center mt-2">
   <div class="row justify-content-center col-5">
 
       <%= simple_form_for @shift, html: {class: "d-none shift-form", data: {new_shift_target: "form"}} do |f| %>
@@ -32,7 +32,7 @@
             <%= w.input :break_length, required: true, label: false, wrapper:false %>
           <% end %>
         </div>
-        <div>
+        <div class="col-12">
           <%= f.button :submit, "Add shift", class: "form-btn", data: {new_shift_target: "submit"}%>
         </div>
       <% end %>

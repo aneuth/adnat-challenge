@@ -8,6 +8,10 @@
   <p><i class="fa-solid fa-arrow-left"></i><%= link_to "Back to Organisation", root_path %></p>
 </div>
 
+<div data-controller="new-shift", class="mt-5 text-center">
+  <%= render partial: "shared/shift_form" %>
+</div>
+
 <div>
   <table class="mt-5 mb-2 shifts">
 
@@ -24,10 +28,6 @@
     <% end %>
 
   </table class="mb-5">
-</div>
-
-<div data-controller="new-shift", class="mt-5">
-  <%= render partial: "shared/shift_form" %>
 </div>
 
 <div class="shifts-back text-end">
