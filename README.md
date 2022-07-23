@@ -25,8 +25,4 @@ Then create a new data-base:
 rails db:create db:migrate db:seed
 ```
 
-Then create a new data-base:
 
-```
-rails db:create db:migrate db:seed
-```
