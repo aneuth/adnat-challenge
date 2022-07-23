@@ -5,6 +5,9 @@ class Shift < ApplicationRecord
 
   accepts_nested_attributes_for :breaks
 
+  validates :start, presence: true
+  validates :finish, presence: true
+
   def shift_length
     TimeDifference.between(start, finish).in_hours
   end
