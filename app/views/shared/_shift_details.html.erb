@@ -17,7 +17,7 @@
     <% if shift.prior_shift == false %>
       <% if shift.user == current_user %>
         <br>
-        <%= simple_form_for @break do |f|%>
+        <%= simple_form_for [shift, @break] do |f|%>
           <div class="form-inputs mt-2">
             <%= f.input :break_length, required: true, label: false %>
           </div>

@@ -38,6 +38,11 @@
           <button type="button" class="btn-purple-sm mx-3 my-3">
             Join
           </button>
+        <%= link_to "Delete",
+          organisation_path(organisation),
+          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
+          class: "btn-purple-sm px-3 py-2 text-center"
+        %>
         <% end %>
         </div>
       <% end %>

@@ -2,10 +2,11 @@ class BreaksController < ApplicationController
 
   def create
     @break = Break.new(break_params)
+    @shift = Shift.find(params[:shift_id])
+    @break.shift = @shift
+    @break.user = current_user
     @break.save
-    current_user.shifts.each do |shift|
-      shift.breaks << @break
-    end
+    @shift.breaks << @break
     redirect_to shifts_path
   end
 

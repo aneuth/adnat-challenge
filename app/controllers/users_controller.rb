@@ -9,10 +9,12 @@ class UsersController < ApplicationController
 
   def leave_organisation
     @organisation = Organisation.find(params[:organisation_id])
-    @user_shifts = current_user.shifts.select { |shift| shift.organisation.id = current_user.organisation.id }
-    @user_shifts.each do |shift|
-      shift.prior_shift!
-      shift.save
+    if @organisation.shifts != []
+      @user_shifts = current_user.shifts.select { |shift| shift.organisation.id = current_user.organisation.id }
+      @user_shifts.each do |shift|
+        shift.prior_shift!
+        shift.save
+      end
     end
     @organisation.users.delete(current_user)
     redirect_to root_path
